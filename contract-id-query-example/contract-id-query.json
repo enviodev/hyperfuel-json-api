@@ -1,0 +1,22 @@
+{
+    "from_block": 0,
+    "transactions": [
+        {
+            "contract_id": [
+                "0x08962250a6e4c0a862002aedc49a60dc6960826e309dcf3f32580b1d11744bf4"
+            ]
+        }
+    ],
+    "field_selection": {
+        "block": [
+            "id"
+        ],
+        "receipt": [
+            "tx_id",
+            "block_height",
+            "ra",
+            "rb",
+            "receipt_type"
+        ]
+    }
+}
