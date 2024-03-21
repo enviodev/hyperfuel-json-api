@@ -1,4 +1,4 @@
-### Queries can be made to the json api here: `https://fuel.hypersync.xyz/query`
+### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
 
 # predicate root query example
 

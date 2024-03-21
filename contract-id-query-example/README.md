@@ -1,4 +1,4 @@
-### Queries can be made to the json api here: `https://fuel.hypersync.xyz/query`
+### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
 
 # contract id query example
 This example draws inspiration from an issue with Fuel's old indexer: [https://github.com/FuelLabs/fuel-indexer/issues/1401](https://github.com/FuelLabs/fuel-indexer/issues/1401)

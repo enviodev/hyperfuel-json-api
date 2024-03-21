@@ -1,4 +1,4 @@
-### Queries can be made to the json api here: `https://fuel.hypersync.xyz/query`
+### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
 
 # hypersync-fuel-docs
 HyperSync is the high performance database that HyperIndex is built upon.  HyperIndex exposes a high level Graph-like developer experience that leans on the performance of HyperSync.  The HyperSync api is lower level and gives users the ability to create more flexible and niche queries over all on-chain data.
