@@ -1,11 +1,12 @@
-### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
+## Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
+
 
 # hypersync-fuel-docs
-HyperSync is the high performance database that HyperIndex is built upon.  HyperIndex exposes a high level Graph-like developer experience that leans on the performance of HyperSync.  The HyperSync api is lower level and gives users the ability to create more flexible and niche queries over all on-chain data.
+HyperSync is [Envio's](https://envio.dev/) high performance database that HyperIndex is built upon.  HyperIndex exposes a high level Graph-like developer experience that leans on the performance of HyperSync.  The HyperSync api is lower level and gives users the ability to create niche, flexible, and high speed queries over all on-chain data.
 
-Currently, HyperSync supports Fuel's beta-4 testnet.  beta-5 support is wrapping up shortly.
+Hypersync supports Fuel's beta-5 network.
 
-HyperSync offers both a json api (shown in demo on March 18th and below) and Rust client crate.  We can also support Python and Js packages if those are easier to integrate with your stack.
+HyperSync offers both a json api (shown in these docs) and Rust client crate.  We can also support Python and Js packages if those are easier to integrate with your stack.
 
 # Query structure
 The query structure is shown in json because the examples will be of the json api.
@@ -48,7 +49,7 @@ The query structure is shown in json because the examples will be of the json ap
 # TransactionSelection
 Query takes an array of TransactionSelection objects and returns transactions that match any of the selections.
 
-Note: A TransactionSelection must be specified, even if it is empty: `"transactions": [{}]`, or else no data will match and the query will return nothing.
+Note: A TransactionSelection must be specified, even if it is empty: `"transactions": [{}]`, or else no data will match and the query will return nothing.  An empty TransactionSelection essentially says "get all data".
 
 Below is an exhaustive list of all fields.
 ```
@@ -87,9 +88,7 @@ Below is an exhaustive list of all fields.
 # FieldSelection
 Query takes a field selection object where the user specifies which fields on the data matched by the TransactionSelection they want data from.
 
-Important note: all fields draw inspiration from Fuel's [graphql schema](https://docs.fuel.network/docs/beta-4/graphql/reference/objects/).  Mainly Blocks, Transactions, Receipts, Inputs, and Outputs.  Enums of each type (ex: Receipt has 12 different types, two of which are Log and LogData, Inputs have 3: InputCoin, InputContract, InputMessage, and Outputs have 5: CoinOutput, ContractOutput, ChangeOutput, VariableOutput, ContractCreated) are flattened into the parent type.  This is why so multiple fields on any returned Receipt, Input, or Output might be null; it's not a field on all possible enums of that type, so null is inserted.
-
-Another note: Some block selection must be made or the query will return no data.  Selecting no fields from blocks essentially doesn't load in any blocks and as a result, doesn't load in any transactions, receipts, inputs, or outputs
+Important note: all fields draw inspiration from Fuel's [graphql schema](https://docs.fuel.network/docs/beta-4/graphql/reference/objects/).  Mainly Blocks, Transactions, Receipts, Inputs, and Outputs.  Enums of each type (ex: Receipt has 12 different types, two of which are Log and LogData, Input has 3: InputCoin, InputContract, InputMessage, and Output has 5: CoinOutput, ContractOutput, ChangeOutput, VariableOutput, ContractCreated) are flattened into the parent type.  This is why so multiple fields on any returned Receipt, Input, or Output might be null; it's not a field on all possible enums of that type, so null is inserted.
 
 Below is an exhaustive list of all fields.
 ```
@@ -110,24 +109,33 @@ Below is an exhaustive list of all fields.
     "id",
     "input_asset_ids",
     "input_contracts",
+    "input_contract_utxo_id",
+    "input_contract_balance_root",
+    "input_contract_state_root",
+    "input_contract_tx_pointer_block_height",
+    "input_contract_tx_pointer_tx_index",
+    "input_contract",
     "gas_price",
     "gas_limit",
     "maturity",
+    "mint_amount",
+    "mint_asset_id",
     "tx_pointer_block_height",
     "tx_pointer_tx_index",
     "tx_type",
+    "output_contract_input_index",
+    "output_contract_balance_root",
+    "output_contract_state_root",
     "witnesses",
     "receipts_root",
     "status",
+    "time",
     "reason",
     "script",
     "script_data",
     "bytecode_witness_index",
     "bytecode_length",
     "salt",
-    "time",
-    "storage_slots",
-    "raw_payload"
 ],
 "receipt": [
     "tx_id",
@@ -171,7 +179,6 @@ Below is an exhaustive list of all fields.
     "tx_pointer_block_height",
     "tx_pointer_tx_index",
     "witness_index",
-    "maturity",
     "predicate_gas_used",
     "predicate",
     "predicate_data",
