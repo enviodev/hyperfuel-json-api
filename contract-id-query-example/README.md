@@ -1,3 +1,5 @@
+# THIS EXAMPLE IS OUTDATED (beta-4) AND IS CURRENTLY BEING UPDATED
+
 ### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
 
 # contract id query example
