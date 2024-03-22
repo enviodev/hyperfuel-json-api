@@ -1,21 +1,25 @@
 {
-    "from_block": 20001,
-    "to_block": 30000,
+    "from_block": 4105960,
+    "to_block": 4106000,
     "transactions": [
         {
             "owner": [
-                "0x57c23aefdbb5941d3abc454d702c4e54d1ab4c853643480f14f4405ad9b22837"
+                "0x48a0f31c78e1c837ff6a885785ceb7c2090f86ed93db3ed2d8821d13739fe981"
             ]
         }
     ],
     "field_selection": {
-        "block": [
-            "id"
-        ],
         "input": [
             "tx_id",
+            "block_height",
+            "input_type",
+            "utxo_id",
             "owner",
-            "block_height"
+            "amount",
+            "asset_id",
+            "predicate_gas_used",
+            "predicate",
+            "predicate_data"
         ]
     }
 }
