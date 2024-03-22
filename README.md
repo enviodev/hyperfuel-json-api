@@ -2,11 +2,15 @@
 
 
 # hypersync-fuel-docs
-HyperSync is [Envio's](https://envio.dev/) high performance database that HyperIndex is built upon.  HyperIndex exposes a high level Graph-like developer experience that leans on the performance of HyperSync.  The HyperSync api is lower level and gives users the ability to create niche, flexible, and high speed queries over all on-chain data.
+HyperSync is [Envio's](https://envio.dev/) high performance database and accelerated data query layer that powers Envio’s Indexing framework (HyperIndex) for 100x faster data retrieval than standard RPC methods. 
+
+HyperSync is a real-time indexed layer of the Fuel network and is exposed as a low-level API for developers and data analysts to create niche, flexible, high-speed queries for all on-chain data. 
+
+Users can interact with the HyperSync API using the json api (shown below) or Rust client and extract data. Hypersync can also support Python and JS packages if those are easier to integrate with your stack.
+
+Using HyperSync, application developers do not need to worry about RPC URLs, rate-limiting, or managing infrastructure, and can easily sync large datasets in a few minutes, something that would usually take hours or days via RPC.
 
 Hypersync supports Fuel's beta-5 network.
-
-HyperSync offers both a json api (shown in these docs) and Rust client crate.  We can also support Python and Js packages if those are easier to integrate with your stack.
 
 # Query structure
 The query structure is shown in json because the examples will be of the json api.
