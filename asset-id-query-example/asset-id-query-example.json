@@ -1,0 +1,38 @@
+{
+    "from_block": 7980000,
+    "to_block": 7980100,
+    "transactions": [
+        {
+            "asset_id": [
+                "0x0000000000000000000000000000000000000000000000000000000000000000"
+            ]
+        }
+    ],
+    "field_selection": {
+        "transaction": [
+            "block_height",
+            "mint_amount",
+            "mint_asset_id"
+        ],
+        "input": [
+            "block_height",
+            "tx_id",
+            "owner",
+            "amount"
+        ],
+        "output": [
+            "block_height",
+            "to",
+            "amount",
+            "asset_id"
+        ],
+        "receipt": [
+            "block_height",
+            "tx_id",
+            "asset_id",
+            "amount",
+            "to",
+            "receipt_type"
+        ]
+    }
+}
