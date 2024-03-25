@@ -12,7 +12,6 @@ You can paste this command into your terminal to execute the query from `predica
 curl --request POST \
   --url https://fuel.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
-  --header 'User-Agent: insomnium/0.2.3-a' \
   --data '{
         "from_block": 4105960,
             "to_block": 4106000,

@@ -10,7 +10,6 @@ You can paste this curl command into your terminal to execute the query from `co
 curl --request POST \
   --url https://fuel.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
-  --header 'User-Agent: insomnium/0.2.3-a' \
   --data '{
         "from_block": 7988155,
 				"to_block":   7988156,
