@@ -1,29 +1,28 @@
 {
     "from_block": 8076516,
     "to_block": 8076517,
-    "transactions": [
+    "receipts": [
         {
-            "contract_id": [
+            "root_contract_id": [
                 "0xff63ad3cdb5fde197dfa2d248330d458bffe631bda65938aa7ab7e37efa561d0"
+            ],
+            "receipt_type": [
+                5,
+                6
             ]
         }
     ],
     "field_selection": {
         "receipt": [
             "tx_id",
-            "asset_id",
-            "amount",
-            "param1",
-            "param2",
+            "block_height",
+            "root_contract_id",
             "ra",
             "rb",
             "rc",
             "rd",
-            "to",
-            "result",
             "data",
-            "receipt_type",
-            "contract_id"
+            "receipt_type"
         ]
     }
 }

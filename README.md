@@ -12,7 +12,7 @@ Using HyperSync, application developers do not need to worry about RPC URLs, rat
 Hypersync supports Fuel's beta-5 network.
 
 # Query structure
-The query structure is shown in json because the examples will be of the json api.
+json structure of a query request
 ```
 {
     // The block to start the query from
@@ -57,6 +57,9 @@ The query structure is shown in json because the examples will be of the json ap
     "max_num_transactions": Number, // Optional, defaults to no maximum
 }
 ```
+
+## A note on selections
+`ReceiptSelection`, `InputSelection`, and `OutputSelection` is where you specify which data you want to search for.  The query searches for data that matches your selection and then loads the `Transaction` that your matched `Receipt`, `Input`, or `Output` was a part of and returns all fields from that `Transaction` that you specified in your `FieldSelection`.  In other words, the query response will have all the data you requested, but it will also have additional data.
 
 # ReceiptSelection
 Query takes an array of ReceiptSelections objects and returns receipts that match any of the selections.  All fields are optional
@@ -149,7 +152,7 @@ Below is an exhaustive list of all fields.
 ```
 
 # FieldSelection
-Query takes a FieldSelection object where the user specifies what they want returned from data matched by their `ReceiptSelection`, `OutputSelection`, and `InputSelection`.
+Query takes a FieldSelection object where the user specifies what they want returned from data matched by their `ReceiptSelection`, `OutputSelection`, and `InputSelection`.  There is no `BlockSelection` or `TransactionSelection` because the query returns all blocks and transactions that include the data you specified in your `ReceiptSelection`, `OutputSelection`, or `InputSelection`.
 
 Important note: all fields draw inspiration from Fuel's [graphql schema](https://docs.fuel.network/docs/graphql/reference/).  Mainly Blocks, Transactions, Receipts, Inputs, and Outputs.  Enums of each type (ex: Receipt has 12 different types, two of which are Log and LogData, Input has 3: InputCoin, InputContract, InputMessage, and Output has 5: CoinOutput, ContractOutput, ChangeOutput, VariableOutput, ContractCreated) are flattened into the parent type.  This is why so multiple fields on any returned Receipt, Input, or Output might be null; it's not a field on all possible enums of that type, so null is inserted.
 
