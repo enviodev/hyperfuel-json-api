@@ -1,5 +1,4 @@
-## Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
-
+## Queries can be made by sending a json post request to the endpoint: `https://fuel-next.hypersync.xyz/query`
 
 # hypersync-fuel-docs
 HyperSync is [Envio's](https://envio.dev/) high performance database and accelerated data query layer that powers Envio’s Indexing framework (HyperIndex) for 100x faster data retrieval than standard RPC methods. 
@@ -28,8 +27,17 @@ The query structure is shown in json because the examples will be of the json ap
     //  pagination.
     "to_block": Number, // Optional, defaults to latest block
 
-    // List of transaction selections, the query will return transactions that match any of these selections.
-    "transactions": Array [{TransactionSelection}],
+    /// List of receipt selections, the query will return receipts that match any of these selections and
+    ///  it will return receipts that are related to the returned objects.
+    "receipts": [{ReceiptSelection}], // Optional
+
+    /// List of input selections, the query will return inputs that match any of these selections and
+    ///  it will return inputs that are related to the returned objects.
+    "inputs": [{InputSelection}], // Optional
+
+    /// List of output selections, the query will return outputs that match any of these selections and
+    ///  it will return outputs that are related to the returned objects.
+    "outputs": [{OutputSelection}], // Optional
 
     // Weather to include all blocks regardless of if they are related to a returned transaction or log Normally
     //  the server will return only the blocks that are related to the transaction or logs in the response. But if this
@@ -50,49 +58,100 @@ The query structure is shown in json because the examples will be of the json ap
 }
 ```
 
-# TransactionSelection
-Query takes an array of TransactionSelection objects and returns transactions that match any of the selections.
-
-Note: A TransactionSelection must be specified, even if it is empty: `"transactions": [{}]`, or else no data will match and the query will return nothing.  An empty TransactionSelection essentially says "get all data".
+# ReceiptSelection
+Query takes an array of ReceiptSelections objects and returns receipts that match any of the selections.  All fields are optional
 
 Below is an exhaustive list of all fields.
 ```
-// transaction, receipt, and input field.
-"contract_id": Array [String],
+    // address that emitted the receipt
+    root_contract_id: [String],
 
-// transaction, receipt, input, and output field.
-"asset_id": Array [String],
+    // The recipient address
+    to_address: [String],
 
-// transaction field
-"tx_type": Array [TransactionType],
+    // The asset id of the coins transferred.
+    asset_id: [String],
 
-// receipt field. The recipient contract (and output)
-"to": Array [String],
+    // the type of receipt
+    // 0 = Call
+    // 1 = Return,
+    // 2 = ReturnData,
+    // 3 = Panic,
+    // 4 = Revert,
+    // 5 = Log,
+    // 6 = LogData,
+    // 7 = Transfer,
+    // 8 = TransferOut,
+    // 9 = ScriptResult,
+    // 10 = MessageOut,
+    // 11 = Mint,
+    // 12 = Burn,
+    receipt_type: [Number],
 
-// receipt field. The recipient address
-"to_address": Array [String],
+    // The address of the message sender.
+    sender: [String],
 
-// receipt field.  The type of receipt numbered 0-12 in order Call, Return, ReturnData, Panic, Revert, Log, LogData, Transfer, TransferOut, ScriptResult, MessageOut, Mint, Burn
-"receipt_type": Array [ReceiptType],
+    // The address of the message recipient.
+    recipient: [String],
 
-// Input and receipt field.  The address of the recipient.
-"recipient": Array [String],
+    // The contract id of the current context if in an internal context. null otherwise
+    contract_id: [String],
+```
 
-// input field.  The owning address or predicate root.
-"owner": Array [String],
+# InputSelection
+Query takes an array of InputSelections objects and returns inputs that match any of the selections.  All fields are optional
 
-// input and receipt field.  The sender address of the message.
-"sender": Array [String],
+Below is an exhaustive list of all fields.
+```
+    // The owning address or predicate root.
+    owner: [String],
 
-// Transaction field.  numbered 0-3 in order Submitted, Success, SqueezedOut, and Failure
-"status": Number,
+    // The asset ID of the coins.
+    asset_id: [String],
 
+    // The input contract.
+    contract: [String],
+
+    // The sender address of the message.
+    sender: [String],
+
+    // The recipient address of the message.
+    recipient: [String],
+
+    // The type of input
+    // 0 = InputCoin,
+    // 1 = InputContract,
+    // 2 = InputMessage,
+    input_type: Vec<u8>,
+```
+
+# OutputSelection
+Query takes an array of OutputSelections objects and returns outputs that match any of the selections.  All fields are optional
+
+Below is an exhaustive list of all fields.
+```
+    // The address the coins were sent to.
+    to: [String],
+
+    // The asset id for the coins sent.
+    asset_id: [String],
+
+    // The contract that was created.
+    contract: [String],
+
+    // the type of output
+    // 0 = CoinOutput,
+    // 1 = ContractOutput,
+    // 2 = ChangeOutput,
+    // 3 = VariableOutput,
+    // 4 = ContractCreated,
+    output_type: [Number],
 ```
 
 # FieldSelection
-Query takes a field selection object where the user specifies which fields on the data matched by the TransactionSelection they want data from.
+Query takes a FieldSelection object where the user specifies what they want returned from data matched by their `ReceiptSelection`, `OutputSelection`, and `InputSelection`.
 
-Important note: all fields draw inspiration from Fuel's [graphql schema](https://docs.fuel.network/docs/beta-4/graphql/reference/objects/).  Mainly Blocks, Transactions, Receipts, Inputs, and Outputs.  Enums of each type (ex: Receipt has 12 different types, two of which are Log and LogData, Input has 3: InputCoin, InputContract, InputMessage, and Output has 5: CoinOutput, ContractOutput, ChangeOutput, VariableOutput, ContractCreated) are flattened into the parent type.  This is why so multiple fields on any returned Receipt, Input, or Output might be null; it's not a field on all possible enums of that type, so null is inserted.
+Important note: all fields draw inspiration from Fuel's [graphql schema](https://docs.fuel.network/docs/graphql/reference/).  Mainly Blocks, Transactions, Receipts, Inputs, and Outputs.  Enums of each type (ex: Receipt has 12 different types, two of which are Log and LogData, Input has 3: InputCoin, InputContract, InputMessage, and Output has 5: CoinOutput, ContractOutput, ChangeOutput, VariableOutput, ContractCreated) are flattened into the parent type.  This is why so multiple fields on any returned Receipt, Input, or Output might be null; it's not a field on all possible enums of that type, so null is inserted.
 
 Below is an exhaustive list of all fields.
 ```
@@ -116,7 +175,6 @@ Below is an exhaustive list of all fields.
     "input_contract_utxo_id",
     "input_contract_balance_root",
     "input_contract_state_root",
-    "input_contract_tx_pointer_block_height",
     "input_contract_tx_pointer_tx_index",
     "input_contract",
     "gas_price",
@@ -142,6 +200,7 @@ Below is an exhaustive list of all fields.
     "salt",
 ],
 "receipt": [
+    "root_contract_id",
     "tx_id",
     "block_height",
     "pc",

@@ -1,4 +1,4 @@
-### Queries can be made by sending a json post request to the endpoint: `https://fuel.hypersync.xyz/query`
+### Queries can be made by sending a json post request to the endpoint: `https://fuel-next.hypersync.xyz/query`
 
 # asset id query example
 We query from blocks 7980000 (inclusive) to 7980100 (exclusive) for all transaction, input, output, and receipt structs where the address `0x0000000000000000000000000000000000000000000000000000000000000000` matches on the `asset_id` field for each struct.  The query additionally returns inputs, outputs, and receipts of transactions that match on the given `asset_id`.
@@ -8,7 +8,7 @@ You can paste this command into your terminal to execute the query from `asset-i
 
 ```bash
 curl --request POST \
-  --url https://fuel.hypersync.xyz/query \
+  --url https://fuel-next.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
   --data '{
         "from_block": 7980000,
