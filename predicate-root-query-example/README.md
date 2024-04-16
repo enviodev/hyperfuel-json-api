@@ -1,4 +1,4 @@
-## Queries can be made by sending a json post request to the endpoint: `https://fuel-next.hypersync.xyz/query`
+## Queries can be made by sending a json post request to the endpoint: `https://fuel-15.hypersync.xyz/query`
 
 
 # predicate root query example
@@ -9,7 +9,7 @@ You can paste this command into your terminal to execute the query from `predica
 
 ```bash
 curl --request POST \
-  --url https://fuel-next.hypersync.xyz/query \
+  --url https://fuel-15.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
   --header 'User-Agent: insomnium/0.2.3-a' \
   --data '{
