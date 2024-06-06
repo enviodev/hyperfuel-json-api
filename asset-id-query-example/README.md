@@ -1,22 +1,21 @@
-### Queries can be made by sending a json post request to the endpoint: `https://fuel-15.hypersync.xyz/query`
+### Queries can be made by sending a json post request to the endpoint: `https://fuel-testnet.hypersync.xyz/query`
 
 # asset id query example
-We query from blocks 7980000 (inclusive) to 7980100 (exclusive) for all `Inputs` where the address `0x0000000000000000000000000000000000000000000000000000000000000000` matches on the `asset_id` field.
+We query from blocks 0 (inclusive) to 1300000 (exclusive) for all `Inputs` where the address `0x2a0d0ed9d2217ec7f32dcd9a1902ce2a66d68437aeff84e3a3cc8bebee0d2eea` matches on an input's `asset_id` field.
 
 ## query as curl request
 You can paste this command into your terminal to execute the query from `asset-id-query-example.json` as a curl request.
 
 ```bash
 curl --request POST \
-  --url https://fuel-15.hypersync.xyz/query \
+  --url https://fuel-testnet.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
-  --header 'User-Agent: insomnium/0.2.3-a' \
   --data '{
-        "from_block": 7980000,
-        "to_block":   7980100,
+        "from_block": 0,
+        "to_block":   1300000,
         "inputs": [
             {
-            "asset_id": ["0x0000000000000000000000000000000000000000000000000000000000000000"]
+            "asset_id": ["0x2a0d0ed9d2217ec7f32dcd9a1902ce2a66d68437aeff84e3a3cc8bebee0d2eea"]
             }
         ],
         "field_selection": {

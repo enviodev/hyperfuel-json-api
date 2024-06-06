@@ -1,10 +1,10 @@
 {
-    "from_block": 7980000,
-    "to_block": 7980100,
+    "from_block": 0,
+    "to_block": 1300000,
     "inputs": [
         {
             "asset_id": [
-                "0x0000000000000000000000000000000000000000000000000000000000000000"
+                "0x2a0d0ed9d2217ec7f32dcd9a1902ce2a66d68437aeff84e3a3cc8bebee0d2eea"
             ]
         }
     ],

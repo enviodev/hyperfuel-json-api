@@ -1,37 +1,41 @@
-## Queries can be made by sending a json post request to the endpoint: `https://fuel-15.hypersync.xyz/query`
+## Queries can be made by sending a json post request to the endpoint: `https://fuel-testnet.hypersync.xyz/query`
 
 # logs by contract id example
-Queries one block (8076516) for all `Log` and `LogData` receipts that were emitted by contract `0xff63ad3cdb5fde197dfa2d248330d458bffe631bda65938aa7ab7e37efa561d0`.
+Queries from block 0 to 1300000 for all `LogData` receipts that were emitted by contract `0x4a2ce054e3e94155f7092f7365b212f7f45105b74819c623744ebcc5d065c6ac`.
 
 ## query as curl request
 You can paste this curl command into your terminal to execute the query from `logs-by-contract-id-example.json` as a curl request.
 
 ```bash
 curl --request POST \
-  --url https://fuel-15.hypersync.xyz/query \
+  --url https://fuel-testnet.hypersync.xyz/query \
   --header 'Content-Type: application/json' \
   --data '{
-        "from_block": 8076516,
-		"to_block":   8076517,
-        "receipts": [
-			{
-				"root_contract_id": ["0xff63ad3cdb5fde197dfa2d248330d458bffe631bda65938aa7ab7e37efa561d0"],
-				"receipt_type": [5, 6]
-			}
-		],
-        "field_selection": {
-			"receipt": [
-				"tx_id",
-				"block_height",
-				"root_contract_id",
-				"ra",
-				"rb",
-				"rc",
-				"rd",
-				"data",
-				"receipt_type"
-			]
-		}
-    }'
+    "from_block": 0,
+    "to_block": 1300000,
+    "receipts": [
+        {
+            "root_contract_id": [
+                "0x4a2ce054e3e94155f7092f7365b212f7f45105b74819c623744ebcc5d065c6ac"
+            ],
+            "receipt_type": [
+                6
+            ]
+        }
+    ],
+    "field_selection": {
+        "receipt": [
+            "tx_id",
+            "block_height",
+            "root_contract_id",
+            "ra",
+            "rb",
+            "rc",
+            "rd",
+            "data",
+            "receipt_type"
+        ]
+    }
+}'
 ```
 
