@@ -1,4 +1,4 @@
-## Queries can be made by sending a json post request to the endpoint: `https://fuel-15.hypersync.xyz/query`
+## Queries can be made by sending a json post request to the endpoint: `https://fuel-testnet.hypersync.xyz/query`
 
 
 # predicate root query example
