@@ -2,7 +2,7 @@
 
 # hyperfuel-json-api
 
-HyperFuel supports a json api mainly for debugging.  It's recommended to use the clients.
+HyperFuel supports a json api mainly for debugging.  It's recommended to use the clients because their binary data transfer is much more efficient than json serialization.  The clients also have more idiomatic response structuring, supporting functions, data filtering, and receipt ordering.
 - [python client](https://github.com/enviodev/hyperfuel-client-python)
 - [rust client](https://github.com/enviodev/hyperfuel-client-rust)
 - [node js client](https://github.com/enviodev/hyperfuel-client-node)
